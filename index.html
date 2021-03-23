@@ -35,16 +35,19 @@
         <script defer>
             // Firebase Setup
             const firebaseConfig = {
-                /**
-                 * ! Place connection script here
-                 * ...
-                 */
+                apiKey: "AIzaSyAIF-q0xF4Um21RbFfb0XbL6Dzc2FBQpqw",
+                authDomain: "littleig.firebaseapp.com",
+                projectId: "littleig",
+                storageBucket: "littleig.appspot.com",
+                messagingSenderId: "613341137337",
+                appId: "1:613341137337:web:0be9bb7ba398ffd7710e68",
+                measurementId: "G-X9BG4HVETF"
             }
 
             firebase.initializeApp(firebaseConfig)
 
             const firestore = firebase.firestore()
-
+            
             /**
              * * Main Runtime
              * 
@@ -55,14 +58,29 @@
                  * ? When element with id "read" is clicked.
                  * ? The function will run.
                  * */
+                 firestore
+                        .collection("stock")
+                        .doc("bitcoin")
+                        .set({
+                            value: 1_800_000,
+                            updateed: Date.now()
+                        })
                 id("read").on("click", () => {
-                    id("title").textContent = "Clicked"
+                    id("title").textContent = "Hello"
 
                     /**
                      * * Do something with Firestore here
                      */
+                    firestore
+                        .collection("stock")
+                        .doc("bitcoin")
+                        .get()
+                        .then(doc => {
+                            console.log(doc.data())
+
+                        })
+                    })
                 })
-            })
         </script>
     </head>
     <body>
