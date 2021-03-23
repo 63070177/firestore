@@ -65,9 +65,15 @@
                             value: 1_800_000,
                             updateed: Date.now()
                         })
+                firestore
+                    .collection("book")
+                    .doc("page")
+                    .set({
+                        value: 24,
+                        updateed: Date.now()
+                        })
                 id("read").on("click", () => {
-                    id("title").textContent = "Hello"
-
+                    id("title").textContent = "stock"
                     /**
                      * * Do something with Firestore here
                      */
@@ -77,14 +83,29 @@
                         .get()
                         .then(doc => {
                             console.log(doc.data())
-
                         })
                     })
-                })
+                id("read2").on("click", () => {
+                    id("title2").textContent = "book"
+                    /**
+                     * * Do something with Firestore here
+                     */
+                     firestore
+                        .collection("book")
+                        .doc("page")
+                        .get()
+                        .then(doc => {
+                            console.log(doc.data())
+                        })
+                        })
+                
+                    })
         </script>
     </head>
     <body>
         <h1 id=title>---</h1>
         <button id=read>Read</button>
+        <h1 id=title2>-------</h1>
+        <button id=read2>Read</button>
     </body>
 </html>
